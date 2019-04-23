@@ -55,7 +55,11 @@ class BlogController extends Controller
       //return soft delete
       // Blog::withTrashed()->restore();
 
-      $blogs = Blog::all();
+      //whithout pagination
+      // $blogs = Blog::all();
+
+      // with pagination
+      $blogs = Blog::paginate(5);
       return view('blog/home', ['blogs' => $blogs]);
     }
 

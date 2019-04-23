@@ -24,5 +24,13 @@
         </form>
       </li><hr>
     @endforeach
+
+    {{-- Add pagination --}}
+    {{-- {{ $blogs->links() }} --}}
+    {{-- {{ $blogs->render() }} --}}
+
+    {{-- not remove another get url --}}
+    {{ $blogs->appends(Request::input())->render() }}
+
   </ul>
 @endsection
