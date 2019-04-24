@@ -44,3 +44,6 @@ Route::group(['prefix' => 'blog'], function(){
 
 // with parameter
 Route::get('/user/{id}','BlogController@show');
+
+// resource controller
+Route::resource('users','UserController');
