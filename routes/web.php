@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/profile', 'UserController@profile');
+// Route::get('/profile', 'UserController@profile')->middleware('auth');
+
 Route::get('/hello', function () {
     return 'Hello..';
 });
