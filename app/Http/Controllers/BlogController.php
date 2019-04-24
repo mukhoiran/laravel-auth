@@ -113,8 +113,14 @@ class BlogController extends Controller
       //validation
       $this->validate($request,[
         'title' => 'required|min:5',
-        'description' => 'required|min:5|max:30'
+        'description' => 'required|min:5|max:30',
+        'featured_img' => 'mimes:jpeg,jpg,png|max:1000'
       ]);
+
+      //upload file
+      // $request->file('featured_img')->storeAs('blog', 'unique.png');
+      $request->file('featured_img')->store('blog');
+      dd('done!');
 
       //common insert
       $blog = new Blog;

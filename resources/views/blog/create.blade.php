@@ -16,7 +16,7 @@
 
     <h1>Create blog</h1>
 
-    <form class="" action="/blog" method="post">
+    <form class="" action="/blog" method="post" enctype="multipart/form-data">
 
       <input type="text" name="title" value="{{old('title')}}"><br />
         @if ($errors->has('title'))
@@ -27,6 +27,13 @@
       @if ($errors->has('description'))
         <p> {{$errors->first('description')}} </p>
       @endif
+
+      Featured Image
+      <input type="file" name="featured_img" value="">
+      @if ($errors->has('featured_img'))
+        <p> {{$errors->first('featured_img')}} </p>
+      @endif
+      <br>
 
       <input type="submit" name="submit" value="Create">
       {{ csrf_field() }}
