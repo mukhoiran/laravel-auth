@@ -47,3 +47,7 @@ Route::get('/user/{id}','BlogController@show');
 
 // resource controller
 Route::resource('users','UserController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
