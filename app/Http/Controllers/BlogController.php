@@ -127,8 +127,11 @@ class BlogController extends Controller
 
       // send email with parameter
       Mail::to('user@gmail.com')->send(new BlogPosted($blog));
-      
+
       return redirect('blog');
+
+      // redirect with route name
+      // return redirect()->route('test');
     }
 
     public function edit($id){
@@ -155,5 +158,14 @@ class BlogController extends Controller
       $blog->delete();
 
       return redirect('blog');
+    }
+
+    public function testing(Request $request){
+      // if($request->method() == "GET"){
+      if($request->isMethod("GET")){
+        dd('This is GET');
+      }else{
+        dd('This is POST');
+      }
     }
 }

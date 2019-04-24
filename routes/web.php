@@ -23,17 +23,24 @@ Route::get('/home', function () {
     return view('blog/home');
 });
 
-// Call controller
-Route::get('/blog','BlogController@index');
+//prefix
+Route::group(['prefix' => 'blog'], function(){
+  //multi method
+  // Route::match(['get','post'], '/blog/testing', 'BlogController@testing');
+  Route::match(['get','post'], '/testing', 'BlogController@testing')->name('test');
+
+  // Call controller
+  Route::get('/','BlogController@index');
+
+  Route::get('/create','BlogController@create');
+  Route::post('/','BlogController@store');
+  Route::get('/{id}','BlogController@view');
+
+  Route::get('/{id}/edit','BlogController@edit');
+  Route::put('/{id}','BlogController@update');
+
+  Route::delete('/{id}','BlogController@destroy');
+});
 
 // with parameter
 Route::get('/user/{id}','BlogController@show');
-
-Route::get('/blog/create','BlogController@create');
-Route::post('/blog','BlogController@store');
-Route::get('/blog/{id}','BlogController@view');
-
-Route::get('/blog/{id}/edit','BlogController@edit');
-Route::put('/blog/{id}','BlogController@update');
-
-Route::delete('/blog/{id}','BlogController@destroy');
