@@ -118,21 +118,22 @@ class BlogController extends Controller
       ]);
 
       //upload file
-      // $request->file('featured_img')->storeAs('blog', 'unique.png');
-      $request->file('featured_img')->store('blog');
-      dd('done!');
+      // $request->file('featured_img')->store('blog');
+      $fileName = time().'.png';
+      $request->file('featured_img')->storeAs('public/blog', $fileName);
 
       //common insert
       $blog = new Blog;
       $blog->title = $request->title;
       $blog->description = $request->description;
+      $blog->featured_img = $fileName;
       $blog->save();
 
       // send email
       // Mail::to('user@gmail.com')->send(new BlogPosted());
 
       // send email with parameter
-      Mail::to('user@gmail.com')->send(new BlogPosted($blog));
+      // Mail::to('user@gmail.com')->send(new BlogPosted($blog));
 
       return redirect('blog');
 
